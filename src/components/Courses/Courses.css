@@ -1,0 +1,20 @@
+#course {
+  margin-bottom: 5px;
+}
+#categories {
+  list-style: none;
+  text-decoration: none;
+  position: relative;
+  margin-top: 40px;
+  color: gray;
+}
+#categories li a {
+  color: gray;
+  margin-left: 25px;
+}
+#categories li a:hover {
+  color: gray;
+  margin-left: 25px;
+  text-decoration: underline;
+  cursor: pointer;
+}
