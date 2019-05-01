@@ -3,20 +3,18 @@ import ReactDOM from "react-dom";
 import "./index.css";
 
 import * as serviceWorker from "./serviceWorker";
-import Courses from "./components/Courses/courses";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
-import Searshinput from "./components/searshInput/searshInput";
-import Nav from "./components/navigation/nav";
+
+import Router from "./Routes/Router";
+
 const client = new ApolloClient({
   uri: "http://localhost:4000/"
 });
 
 const App = () => (
   <ApolloProvider client={client}>
-    <Nav />
-    <br />
-    <Courses />
+    <Router />
   </ApolloProvider>
 );
 ReactDOM.render(<App />, document.getElementById("root"));

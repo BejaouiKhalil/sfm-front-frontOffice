@@ -1,11 +1,14 @@
 import React from "react";
 import "./course.css";
 
-const course = ({ course }) => {
+const course = ({ course, handleCourseDetails, handleSubscribe }) => {
   return (
     <>
       <div className="flex-grid-item col-md-4" id="course">
-        <div className="ss-card ss-class">
+        <div
+          className="ss-card ss-class"
+          onClick={() => handleCourseDetails(course.id)}
+        >
           <div className="ss-card--top-el skillshare-original-gradient" />
           <label className="ss-card--top-el skillshare-original" />
           <a className="ss-card__thumbnail js-class-preview">
@@ -36,7 +39,12 @@ const course = ({ course }) => {
                 </p>
               </div>
             </div>
-            <div className="wishlist-button-container">save</div>
+            <div
+              className="wishlist-button-container"
+              onClick={() => handleSubscribe(course.id)}
+            >
+              save
+            </div>
           </div>
         </div>
       </div>

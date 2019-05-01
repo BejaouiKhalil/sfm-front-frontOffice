@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+
 import PubSub from "pubsub-js";
 import "./nav.scss";
 import SearshInput from "../searshInput/searshInput";
@@ -35,13 +37,14 @@ class NavMenu extends Component {
                 Home
               </a>
             </div>
-            <div className="nav-item nav-menu-browse js-nav-menu-browse">
+            <div className="nav-item ">
               <a
                 className="nav-item-link no-bold js-nav-link-browse initialized"
                 href="https://www.skillshare.com/browse?via=header"
               >
-                <span>Browse</span>
-                <span className="ss-icon-arrow-down" />
+                <Link to="/Courses" className="nav-item-link primary no-bold">
+                  <span>Browse</span>
+                </Link>
               </a>
               <div className="popover shadow bottom">
                 <div className="inner-popover">

@@ -39,6 +39,24 @@ export const GET_CLASSES_BY_NAME = gql`
     }
   }
 `;
+export const GET_COURSE_BY_ID = gql`
+  query course($id: ID!) {
+    course(id: $id) {
+      id
+      name
+      type
+      contenu
+      imageUrl
+      classe {
+        id
+        name
+      }
+      author {
+        name
+      }
+    }
+  }
+`;
 export const GET_USERS_BY_NAME = gql`
   query findUserByName($name: String!) {
     findUserByName(name: $name) {

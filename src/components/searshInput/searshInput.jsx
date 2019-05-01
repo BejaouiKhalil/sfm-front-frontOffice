@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Query } from "react-apollo";
+import { withRouter } from "react-router-dom";
 import {
   GET_CLASSES_BY_NAME,
   GET_COURSES_BY_NAME,
@@ -9,7 +10,7 @@ import Loading from "../Loading/Loading";
 
 import "./searshInput.css";
 
-const Courses = ({ name }) => {
+const Courses = ({ name, handleCourseDetails }) => {
   return (
     <Query query={GET_COURSES_BY_NAME} variables={{ name }}>
       {({ loading, error, data }) => {
@@ -17,7 +18,11 @@ const Courses = ({ name }) => {
         if (error) return <p>Error :(</p>;
         console.log(data.findCourseByName);
         return data.findCourseByName.map(c => (
-          <div className="row line" key={c.id}>
+          <div
+            className="row line"
+            key={c.id}
+            onClick={() => handleCourseDetails(c.id)}
+          >
             <img src={c.imageUrl} alt={c.name} />
             <p>{c.name}</p>
           </div>
@@ -66,7 +71,11 @@ class searshInput extends Component {
   handleChange = e => {
     this.setState({ input: e.target.value });
   };
-
+  handleCourseDetails = id => {
+    console.log(this.props);
+    this.props.history.push({ pathname: `/CourseDetails/${id}` });
+    window.location.reload();
+  };
   render() {
     let widget = null;
     if (this.state.input) {
@@ -74,7 +83,10 @@ class searshInput extends Component {
         <div className="res">
           <h3>courses :</h3>
 
-          <Courses name={this.state.input} />
+          <Courses
+            name={this.state.input}
+            handleCourseDetails={id => this.handleCourseDetails(id)}
+          />
 
           <h3>classes :</h3>
 
@@ -96,4 +108,4 @@ class searshInput extends Component {
     );
   }
 }
-export default searshInput;
+export default withRouter(searshInput);
