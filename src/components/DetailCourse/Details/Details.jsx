@@ -1,10 +1,10 @@
 import React from "react";
-import "./Details.css";
-import { ActionBar } from "./ActionBar";
+
 export const Details = () => (
-  <div className="container">
-    <ActionBar />
-  </div>
+  <>
+    <h1>About this course</h1>
+    <p>Course description</p>
+  </>
 );
 
 export default Details;

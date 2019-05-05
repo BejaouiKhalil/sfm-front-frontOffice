@@ -34,3 +34,9 @@
 .tab {
   height: 40px;
 }
+li {
+  cursor: pointer;
+}
+.active {
+  border-bottom: 1px solid gray;
+}

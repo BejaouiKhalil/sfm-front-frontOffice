@@ -1,0 +1,22 @@
+#new_review {
+  margin: 10px 0px 10px 0px;
+  background-color: #f7f7f7;
+}
+#new_review img {
+  margin: 10px;
+  width: 80px;
+  height: 80px;
+  border-radius: 60%;
+}
+textarea {
+  border: 1pw solid black;
+}
+#new_review span:hover {
+  color: yellow;
+}
+#moy-review {
+  background-color: white;
+}
+#moy-review span {
+  color: yellow;
+}
