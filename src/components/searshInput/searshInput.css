@@ -1,0 +1,44 @@
+.res {
+  border: 1px solid #a9a9a9;
+  border-radius: 4px;
+  background-color: #ffff;
+  position: fixed;
+  width: 400px;
+}
+
+.res h3 {
+  font-weight: bold;
+  font-size: 15px;
+  color: rgb(65, 68, 75);
+  margin: 8px 24px;
+  border-bottom: 1px solid rgb(218, 223, 225);
+}
+input {
+  width: 100%;
+}
+.line {
+  color: rgb(65, 68, 75);
+  display: flex;
+  min-height: 20px;
+  -webkit-box-align: center;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 8px 24px;
+  margin: 0px;
+}
+.line p {
+  text-align: center;
+  padding-top: 9px;
+  padding-left: 7px;
+}
+.line:hover {
+  background-color: #f7f7f7;
+  cursor: pointer;
+}
+.line img {
+  margin: 4px 0px 0px 2px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+}
