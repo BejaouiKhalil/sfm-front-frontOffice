@@ -37,6 +37,16 @@ class NavMenu extends Component {
                 Home
               </a>
             </div>
+            <div className="nav-item">
+            <Link to="/events" className="nav-item-link primary no-bold">
+                  <span>Events</span>
+                </Link>
+            </div>
+            <div className="nav-item">
+            <Link to="/myevents" className="nav-item-link primary no-bold">
+                  <span>My Events</span>
+                </Link>
+            </div>
             <div className="nav-item ">
               <a
                 className="nav-item-link no-bold js-nav-link-browse initialized"

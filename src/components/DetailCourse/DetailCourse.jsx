@@ -4,12 +4,30 @@ import { GET_COURSE_BY_ID } from "../../graphql/coursesQL";
 import Loading from "../Loading/Loading";
 import { Details } from "./Details/Details";
 import "./DetailCourse.css";
+import ActionBar from "./Details/ActionBar";
+import Reviews from "./Reviews/Reviews";
 class DetailCourse extends Component {
   state = {
-    Course: null,
-    id: this.props.match.params.id
+    tab: "home",
+    id: this.props.match.params.id,
+    content: <Details />
   };
 
+  handleTab = async e => {
+    console.log("clicked");
+    console.log(e.target.innerHTML);
+    switch (e.target.innerHTML) {
+      case "Reviews":
+        this.setState({ content: <Reviews /> });
+        break;
+      case "About":
+        this.setState({ content: <Details /> });
+        break;
+      default:
+        break;
+    }
+    await this.setState({ tab: "reveiw" });
+  };
   render() {
     const id = this.state.id;
 
@@ -18,7 +36,7 @@ class DetailCourse extends Component {
         <Query query={GET_COURSE_BY_ID} variables={{ id }}>
           {({ loading, error, data }) => {
             if (loading) return <Loading />;
-            if (error) return <p>{Error} :D</p>;
+            if (error) return <p>error :D</p>;
             if (data) {
               const {
                 id,
@@ -58,7 +76,8 @@ class DetailCourse extends Component {
                       </p>
                     </div>
                   </div>
-                  <Details />
+                  <ActionBar handleTab={e => this.handleTab(e)} />
+                  <div className="container">{this.state.content}</div>
                 </>
               );
             }

@@ -33,27 +33,3 @@
 }
 
 /* details */
-
-.button {
-  border-radius: 4px;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: inline-block;
-  font-family: proxima nova, sans-serif;
-  font-weight: 400;
-  padding: 0 16px;
-  position: relative;
-  text-align: center;
-  vertical-align: middle;
-  white-space: nowrap;
-  height: 28px;
-  line-height: 27px;
-  min-width: 64px;
-  font-size: 13px;
-}
-.button.alt-charcoal-ghost {
-  background-color: transparent;
-  border: 1px solid #41444b;
-  color: #41444b;
-  text-decoration: none;
-}
