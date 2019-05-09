@@ -9,7 +9,8 @@ import "./Courses.css";
 class Courses extends Component {
   state = {
     courses: null,
-    new: null
+    new: null,
+    notif: null
   };
 
   handleCategorie = async id => {
@@ -21,12 +22,40 @@ class Courses extends Component {
   handleCourseDetails = id => {
     this.props.history.push({ pathname: `/CourseDetails/${id}` });
   };
-  handleSubscribe = id => {
-    console.log(id);
+  handleSubscribe = async id => {
+    const requestBody = {
+      query: `
+      mutation{
+        subscribe(user_id:"5cbcace79da51fa9b94494fd" class_id:"${id}"){
+           name classes{name}
+        }
+      }
+      `
+    };
+
+    const res = await fetch("http://localhost:4000/graphql", {
+      method: "POST",
+      body: JSON.stringify(requestBody),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+
+    this.setState({
+      notif: (
+        <div className="alert alert-success" role="alert">
+          vous etes inscrit au cours !
+        </div>
+      )
+    });
+  };
+  closeAlert = () => {
+    this.setState({ notif: null });
   };
   render() {
     return (
       <div className="container">
+        <div onClick={this.closeAlert}>{this.state.notif} </div>
         <div className="row">
           <div className="col-md-3" id="categories" style={{ left: 20 }}>
             <h3>Classes:</h3>
@@ -35,12 +64,16 @@ class Courses extends Component {
           <div className="col-md-9" id="courses">
             <div className="row">
               <Query query={GET_ALL_COURSES}>
-                {({ data, loading, error }) => {
+                {({ data, loading, error, refetch }) => {
                   if (loading) return <Loading />;
                   if (data.courses.length) {
                     if (!this.state.new) {
                       this.state.courses = data.courses;
-                      console.log(this.state.courses);
+                      console.log(this.state.notif);
+                      if (this.state.notif) {
+                        console.log("reftching");
+                        refetch();
+                      }
                       return this.state.courses.map(course => (
                         <Course
                           key={course.id}

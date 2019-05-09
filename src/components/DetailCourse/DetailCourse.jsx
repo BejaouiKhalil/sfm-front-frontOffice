@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Query } from "react-apollo";
-import { GET_COURSE_BY_ID } from "../../graphql/coursesQL";
+import { GET_COURSE_BY_ID, GET_COURSE_NOTE } from "../../graphql/coursesQL";
 import Loading from "../Loading/Loading";
 import { Details } from "./Details/Details";
 import "./DetailCourse.css";
@@ -18,7 +18,7 @@ class DetailCourse extends Component {
     console.log(e.target.innerHTML);
     switch (e.target.innerHTML) {
       case "Reviews":
-        this.setState({ content: <Reviews /> });
+        this.setState({ content: <Reviews id={this.state.id} /> });
         break;
       case "About":
         this.setState({ content: <Details /> });
@@ -72,7 +72,11 @@ class DetailCourse extends Component {
                     </div>
                     <div className="col-md-4 offset-md-2" id="followers">
                       <p>
-                        {contenu && contenu.length} en train de suivre ce cours
+                        <span className="highlight">
+                          {classe && classe.subscribers.length}{" "}
+                          <i className="fas fa-eye" />{" "}
+                        </span>
+                        en train de suivre ce cours
                       </p>
                     </div>
                   </div>

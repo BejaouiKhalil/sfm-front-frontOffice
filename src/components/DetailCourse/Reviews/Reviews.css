@@ -1,3 +1,12 @@
+#list_review img {
+  margin: 10px;
+  width: 80px;
+  height: 80px;
+  border-radius: 60%;
+}
+#rate {
+  padding: 2px;
+}
 #new_review {
   margin: 10px 0px 10px 0px;
   background-color: #f7f7f7;
