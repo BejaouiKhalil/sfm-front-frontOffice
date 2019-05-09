@@ -5,13 +5,13 @@ const course = ({ course, handleCourseDetails, handleSubscribe }) => {
   return (
     <>
       <div className="flex-grid-item col-md-4" id="course">
-        <div
-          className="ss-card ss-class"
-          onClick={() => handleCourseDetails(course.id)}
-        >
+        <div className="ss-card ss-class">
           <div className="ss-card--top-el skillshare-original-gradient" />
           <label className="ss-card--top-el skillshare-original" />
-          <a className="ss-card__thumbnail js-class-preview">
+          <a
+            className="ss-card__thumbnail js-class-preview"
+            onClick={() => handleCourseDetails(course.id)}
+          >
             <div
               className="ss-card__thumbnail-img-holder"
               style={{
@@ -28,7 +28,7 @@ const course = ({ course, handleCourseDetails, handleSubscribe }) => {
               </div>
 
               <span className="ss-class__stats__stud-count">
-                38,381 students
+                {course.classe && course.classe.subscribers.length} students
               </span>
             </div>
             <p className="ss-card__title">{course.name}</p>
@@ -41,7 +41,7 @@ const course = ({ course, handleCourseDetails, handleSubscribe }) => {
             </div>
             <div
               className="wishlist-button-container"
-              onClick={() => handleSubscribe(course.id)}
+              onClick={() => handleSubscribe(course.classe.id)}
             >
               save
             </div>
