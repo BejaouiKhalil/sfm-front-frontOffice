@@ -10,6 +10,10 @@ export const GET_ALL_COURSES = gql`
       classe {
         id
         name
+        subscribers {
+          id
+          name
+        }
       }
       author {
         name
@@ -50,6 +54,10 @@ export const GET_COURSE_BY_ID = gql`
       classe {
         id
         name
+        subscribers {
+          id
+          name
+        }
       }
       author {
         name
@@ -62,6 +70,24 @@ export const GET_USERS_BY_NAME = gql`
     findUserByName(name: $name) {
       id
       name
+    }
+  }
+`;
+
+export const GET_COURSE_NOTE = gql`
+  query Moyrates($course: ID!) {
+    Moyrates(courseId: $course)
+  }
+`;
+export const GET_ALL_RATES = gql`
+  query rates($course: ID!) {
+    rates(courseId: $course) {
+      id
+      vote
+      comment
+      author {
+        name
+      }
     }
   }
 `;

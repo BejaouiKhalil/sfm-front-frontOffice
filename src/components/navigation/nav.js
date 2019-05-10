@@ -53,7 +53,7 @@ class NavMenu extends Component {
                 href="https://www.skillshare.com/browse?via=header"
               >
                 <Link to="/Courses" className="nav-item-link primary no-bold">
-                  <span>Browse</span>
+                  <span>Courses</span>
                 </Link>
               </a>
               <div className="popover shadow bottom">
