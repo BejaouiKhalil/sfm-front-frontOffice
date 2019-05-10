@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import 'whatwg-fetch';
-import * as PubSub from "pubsub-js";
+import  PubSub from "pubsub-js";
 
 class Signin extends Component {
 
@@ -50,12 +50,19 @@ class Signin extends Component {
   serviceSignInHandler(data) {
 
     if (data.status === 'success') {
-        console.log(data);
-        this.props.history.push ("/main");
 
+        console.log(data);
         PubSub.publish ('IS_LOGIN', {status: true, token: data.accesstoken, userid: data.userid,callback:()=>{
-          console.log("succes");
-      }});
+                alert(window.localStorage.getItem("userid"));
+                console.log(data);
+                this.props.history.push ("/main");
+
+                console.log("succes");
+      }
+        });
+
+        console.log("tiit");
+
 
     } else {
       alert (data.message);

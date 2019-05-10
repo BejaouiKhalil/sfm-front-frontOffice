@@ -20,7 +20,7 @@ export class Auth {
         clearInterval(this.interval);
     }
     requestNewToken() {
-        fetch('/api/newtoken', {
+        fetch('http://localhost:4000/user/newtoken', {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json',

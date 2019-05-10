@@ -11,14 +11,14 @@ export default class Professional extends Component {
          occupation:'',
          company:'',
          skill:'',
-         
+
        }
     };
     this.changeState = this.changeState.bind (this);
   }
-  
+
   componentWillReceiveProps(newprops) {
-     
+
     if (newprops.userdata.hasOwnProperty ('userDetail')) {
       if(newprops.userdata.userDetail.professional!==null){
          var obj = {'occupation': newprops.userdata.userDetail.professional.occupation,
@@ -26,15 +26,15 @@ export default class Professional extends Component {
         'skill': newprops.userdata.userDetail.professional.skill
       }
       this.setState ({formdata: obj,edit:newprops.userdata.edit});
-      } 
+      }
     }else{
-        this.setState ({edit:newprops.userdata.edit}); 
+        this.setState ({edit:newprops.userdata.edit});
     }
   }
-  
-  
-  
-     
+
+
+
+
 
   saveBtnClick(){
     let obj={};
@@ -46,13 +46,13 @@ export default class Professional extends Component {
     });
      this.setState ({editable: 'hidden', simpletext: ''});
   };
-  
-  
-  
-  
+
+
+
+
   SaveEnableHandler(){
      var id = window.localStorage.getItem ('userid');
-    fetch (`/api/updateuserdetail`, 
+    fetch (`http://localhost:4000/user/updateuserdetail`,
     {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
@@ -63,9 +63,9 @@ export default class Professional extends Component {
       if (json.hasOwnProperty ('list')) {}
     });
   }
-  
-  
-  
+
+
+
 
   changeState(type) {
     Object.keys(this.refs).forEach((key,i)=>{
@@ -76,50 +76,50 @@ export default class Professional extends Component {
 
   cancelClickState(type) {
     this.setState ({editable: 'hidden', simpletext: ''});
-  } 
+  }
 
   render() {
   return (
 <div className="panel panel-default">
   <div className="panel-heading clearfix">
     <h3 className="panel-title pull-left">Professional Information</h3>
-   
+
        {
-         (()=>{ 
-           
+         (()=>{
+
           if(this.state.edit){
-              
-         
+
+
             return(<div><a href="javascript:void(0)" className={this.state.simpletext}><i onClick={() => this.changeState('basicinfo')} className="glyphicon glyphicon-pencil pull-right"></i></a>
    <button type="button" onClick={() => this.cancelClickState ('basicinfo')}  className={`pull-right btn btn-secondary  ${this.state.editable}`}>Cancel</button></div>)
-      
-          
+
+
            }
          })()
         }
-      
-       
-    
+
+
+
   </div>
 
-   
+
 
   <div className="panel-body">
     <div className="row">
       <label className="col-sm-2 col-form-label">Occupation:</label>
       <div className={`col-sm-4 ${this.state.simpletext}`}>
         <div> {this.state.formdata.occupation}</div>
-      </div> 
+      </div>
       <div className={`col-sm-4 ${this.state.editable}`}>
         <input type="text" ref="occupation"  className="form-control input-sm" placeholder="Ex:Art Director, Student"/>
-      </div> 
+      </div>
       <label className="col-sm-2 col-form-label">Company:</label>
       <div className={`col-sm-4 ${this.state.simpletext}`}>
         <p> {this.state.formdata.company} </p>
       </div>
       <div className={`col-sm-4 ${this.state.editable}`}>
         <input type="text" ref="company" className="form-control input-sm" placeholder="Company"/>
-      </div> 
+      </div>
     </div>
   </div>
 
@@ -128,15 +128,15 @@ export default class Professional extends Component {
       <label className="col-sm-2 col-form-label">Skills:</label>
       <div className={`col-sm-4 ${this.state.simpletext}`}>
         <div> {this.state.formdata.skill}</div>
-      </div> 
+      </div>
       <div className={`col-sm-4 ${this.state.editable}`}>
         <input type="text" ref="skill"  className="form-control input-sm" placeholder="Ex:Art Director, Student"/>
-      </div> 
-        
+      </div>
+
     </div>
   </div>
 
-   
+
 
   {(() => {
   if (this.state.editable == ''){

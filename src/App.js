@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import {Auth} from './common/auth';
 import PubSub from 'pubsub-js';
 import './style/css/App.scss';
-import Routing from './router/router';
+import Router from "./Routes/Router";
 
 class App extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class App extends Component {
     this.mySubscriber = this.mySubscriber.bind(this);
     PubSub.subscribe('IS_LOGIN', this.mySubscriber);
     this.auth = new Auth();
-
+    console.log("here");
     if (this.state.isLoggedIn) {
       this.auth.activeInterval(this.props.history);
     }
@@ -54,7 +54,6 @@ class App extends Component {
   render() {
     return (
         <div>
-          <Routing islogin={this.state.isLoggedIn} />
         </div>);
   }
 }

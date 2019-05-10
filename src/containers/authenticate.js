@@ -9,7 +9,7 @@ class Authentication extends Component {
     }
     componentWillMount() {
 
-        fetch('/api/authvalidate', {
+        fetch('http://localhost:4000/user/authvalidate', {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json',

@@ -19,7 +19,7 @@ class UserProfile extends Component {
   }
   ;
     showUserProfile(event, data) {
-    fetch (`/api/getuserdetail/${data.towhome}`, {method: 'get', headers: {'Content-Type': 'application/json'}}
+    fetch (`http://localhost:4000/user/getuserdetail/${data.towhome}`, {method: 'get', headers: {'Content-Type': 'application/json'}}
     ).then (res => res.json ()
     ).then (json => {
       if (json.hasOwnProperty ('list')) {

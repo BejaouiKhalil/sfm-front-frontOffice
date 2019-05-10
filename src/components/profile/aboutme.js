@@ -28,10 +28,10 @@ import  'whatwg-fetch';
       }
        this.setState ({formdata: obj,edit:newprops.userdata.edit});
       }else{
-            this.setState ({edit:newprops.userdata.edit}); 
+            this.setState ({edit:newprops.userdata.edit});
       }
      }else{
-        this.setState ({edit:newprops.userdata.edit}); 
+        this.setState ({edit:newprops.userdata.edit});
     }
   }
 
@@ -55,7 +55,7 @@ import  'whatwg-fetch';
   ;
     saveEnableHandler() {
     var id = window.localStorage.getItem ('userid');
-    fetch (`/api/updateuserdetail`,
+    fetch (`http://localhost:4000/user/updateuserdetail`,
       {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
@@ -78,18 +78,18 @@ import  'whatwg-fetch';
         <div className="panel-heading clearfix">
           <h3 className="panel-title pull-left">About Me</h3>
           {
-         (()=>{ 
+         (()=>{
           if(this.state.edit){
             return(<div><a href="javascript:void(0)" className={this.state.simpletext}><i onClick={() => this.changeState ('aboutme')} className="glyphicon glyphicon-pencil pull-right"></i></a>
           <button type="button" onClick={() => this.cancelClickState ('aboutme')}  className={`pull-right btn btn-secondary  ${this.state.editable}`}>Cancel</button></div>)
-      
-          
+
+
            }
          })()
         }
-          
+
         </div>
-      
+
         <div className="panel-body">
           <div className="row">
             <label className="col-sm-2 col-form-label">Title:</label>
@@ -98,10 +98,10 @@ import  'whatwg-fetch';
             </div>
             <div className={`col-sm-10 ${this.state.editable}`}>
               <input type="text" ref="tagline" className="form-control input-sm" placeholder="Tagline.."/>
-            </div>           
+            </div>
           </div>
         </div>
-      
+
         <div className="panel-body">
           <div className="row">
             <label className="col-sm-2 col-form-label">Description:</label>
@@ -110,24 +110,24 @@ import  'whatwg-fetch';
             </div>
             <div className={`col-sm-10 ${this.state.editable}`}>
               <textarea ref="description" className="form-control input-sm" rows="5" placeholder="About Yourself!!!!!"></textarea>
-            </div>           
+            </div>
           </div>
         </div>
-      
+
         <div className="panel-body">
           <div className="row">
             <label className="col-sm-2 col-form-label">Hobbies:</label>
             <div className={`col-sm-4 ${this.state.simpletext}`}>
               <div> {this.state.formdata.hobby}</div>
-            </div> 
+            </div>
             <div className={`col-sm-4 ${this.state.editable}`}>
               <input type="text" ref="hobby"  className="form-control input-sm" placeholder="Ex:Outdoor Games, Bike Riding"/>
-            </div> 
-      
+            </div>
+
           </div>
         </div>
-      
-      
+
+
         {(() => {
           if (this.state.editable == '') {
             return(<div className="panel-heading clearfix">
@@ -135,7 +135,7 @@ import  'whatwg-fetch';
   </div>);
         }
         })()}
-      
+
       </div>
         )
   }

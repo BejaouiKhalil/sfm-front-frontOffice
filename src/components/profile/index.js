@@ -12,15 +12,15 @@ class MyProfile extends Component {
     super (props);
     this.state = {
         edit:props.userdata.edit,
-        userdata: {}, 
+        userdata: {},
         completed: null,
         userid:props.userdata.userId
     };
   }
 
     componentWillMount() {
- 
-    fetch (`/api/getuserdetail/${this.state.userid}`, {method: 'get', headers: {'Content-Type': 'application/json'}}
+
+    fetch (`http://localhost:4000/user/getuserdetail/${this.state.userid}`, {method: 'get', headers: {'Content-Type': 'application/json'}}
     ).then (res => res.json ()
     ).then (json => {
       if (json.hasOwnProperty ('list')) {
@@ -30,7 +30,7 @@ class MyProfile extends Component {
           obj.userDetail = json.list[0].userDetail;
         }
          obj.edit=this.state.edit;
-        
+
          this.setState ({userdata:obj});
       }
     });

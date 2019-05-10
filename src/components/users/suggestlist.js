@@ -26,13 +26,13 @@ class Newfriend extends Component {
     }
 
   };
-  
-  
-  
+
+
+
   notifymessgae(type,obj){
       PubSub.publish ('LANDING_MESSGAE', obj.message);
   };
-  
+
 
   primarybtnAction(e, id, type) {
     let obj = {requestedby: this.state.userid, requestedto: id},
@@ -42,19 +42,19 @@ class Newfriend extends Component {
       e.target.disabled = true;
       posturl = `/api/sendrequest`;
       this.sereviceCall (posturl, obj, () => {
-         
+
              var updatefrndlist=   this.state.newfriendList.filter((e)=>{
             if(e._id!==id){
-               return e ; 
+               return e ;
             }else{
                this.notifymessgae("SUCCESS",{
                  message:`Request successfully sent to ${e.firstName} ${ e.lastName} !!`
                });
-             
+
             };
-        }); 
-         
-      
+        });
+
+
         this.setState ({newfriendList: updatefrndlist});
 
       });
@@ -63,19 +63,19 @@ class Newfriend extends Component {
       posturl = `/api/acceptrequest`;
       this.sereviceCall (posturl, obj, () => {
         console.log (this.state.recevingRequest);
-         
+
          var updatefrndlist=   this.state.recevingRequest.filter((e)=>{
             if(e._id!==id){
-              return e ; 
+              return e ;
             }else{
                this.notifymessgae("SUCCESS",{
                message:`${e.firstName} ${ e.lastName} is successfully added in your Conversation List !!`
-                   
+
             });
                PubSub.publish ('UPDATE_USERLIST', e);
             };
-        }); 
-         
+        });
+
         this.setState ({recevingRequest: updatefrndlist});
       });
     } else {
@@ -93,7 +93,9 @@ class Newfriend extends Component {
     ).then (res => res.json ()).then (json => {
       callback ();
 
-    });
+    }).catch(error => {
+        console.log(JSON.stringify (obj)+"something bad happened somewhere, rollback!"+error);
+    });;
   }
   ;
     categorised(json) {
@@ -130,7 +132,7 @@ class Newfriend extends Component {
   }
 
   componentDidMount() {
-    fetch (`/api/getuserlist/${this.state.userid}`, {method: 'get', headers: {'Content-Type': 'application/json'}}
+    fetch (`http://localhost:4000/user/getuserlist/${this.state.userid}`, {method: 'get', headers: {'Content-Type': 'application/json'}}
     ).then (res => res.json ()).then (json => {
       this.categorised (json);
     });
@@ -147,14 +149,14 @@ class Newfriend extends Component {
                 <h4 className="media-heading text-capitalize">{obj.firstName} {obj.lastName}</h4>
                 <p> { obj.email } </p>
                 <p>
-          
+
                   <button  className="btn btn-primary btn-xs"   onClick={(e) => {
               this.primarybtnAction (e, obj._id, objData.type);
                                                                                   }}>
                     <i className="glyphicon glyphicon-plus"></i>
                     &nbsp; {objData.primarybtntext} </button>
                   &nbsp;
-                  <button className="btn btn-success btn-xs" 
+                  <button className="btn btn-success btn-xs"
                           onClick={(e) => {
                 this.secondarybtnAction (e, obj._id, objData.type)
                                         }}
@@ -192,9 +194,9 @@ class Newfriend extends Component {
                   secondarybtntext: "Cancel"
             })}
           </div>
-      
+
         </div>
-      
+
         <div className="panel panel-default">
           <div className="panel-heading">
             <h5> <b>Suggest Friend(s)</b></h5>
@@ -207,9 +209,9 @@ class Newfriend extends Component {
                     secondarybtntext: "Profile"
             })}
           </div>
-      
-        </div> 
-      
+
+        </div>
+
       </div>
             )
         }
