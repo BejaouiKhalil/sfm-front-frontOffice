@@ -43,6 +43,7 @@ class EventList extends Component {
         
       }
     componentDidMount() {
+
         axios.get("http://localhost:4000/events/getAllEvents").then(
             result => {
                 let items=result.data;
@@ -69,7 +70,6 @@ class EventList extends Component {
                         return new Date(a.startDate).getTime() - 
                             new Date(b.startDate).getTime()
                     });
-                    console.log(sorted_items)
                   this.setState({
                     isLoaded: true,
                     bestEvent: sorted_items
@@ -82,7 +82,8 @@ class EventList extends Component {
                   });
                 }
                 );
-            axios.get("http://localhost:5000/getRecommandetUserByName?name=test3").then(
+                
+            axios.get("http://localhost:5000/getRecommandetUserByName?name=test1").then(
                 result => {
                    let recEvents=[];
                     result.data.forEach(function(item) {
@@ -105,7 +106,7 @@ class EventList extends Component {
     }
     render(){
         const { error, isLoaded, items,recItems,bestEvent } = this.state;
-
+        console.log(this.state.bestEvent)
         return(
             <div className="animated fadeIn">
                 <Row>

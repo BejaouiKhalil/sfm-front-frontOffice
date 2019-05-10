@@ -8,6 +8,7 @@ import Login from "../containers/login";
 import Profile from "../containers/profile";
 import Event from "../components/event/event";
 import MyEvents from "../components/event/myEvents";
+import eventDetails from "../components/event/eventDetails";
 
 const Router = () => (
   <>
@@ -24,6 +25,7 @@ const Router = () => (
           <Route path="/profile/:id" component={Profile} />
           <Route path="/events" component={Event} />
           <Route path="/myevents" component={MyEvents} />
+          <Route path="/eventDetails/:id" component={eventDetails} />
 
       </Switch>
     </BrowserRouter>

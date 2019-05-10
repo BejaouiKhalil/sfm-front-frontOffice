@@ -22,6 +22,7 @@ class myEvents extends Component {
         
       }
     componentDidMount() {
+        console.log(window.localStorage.getItem('userid'))
       axios.get("http://localhost:4000/events/getUserParticipatingEvent/"+this.state.idUser).then(
         result => {
             let items=result.data;
