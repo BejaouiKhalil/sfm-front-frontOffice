@@ -1,0 +1,40 @@
+.eventContainer{
+    padding-top: 50px;
+    padding-bottom: 45px;
+    max-width: 1136px;
+    margin-left: 20%;
+        h1{
+        font-size: 36px;
+        line-height: 1.2em;
+        font-weight: 200;
+        margin-bottom: 20px;
+        margin-left: 100px;
+        margin-top: -90px;
+    }
+    h4{
+        margin-left: 100px;
+    }
+}
+.eventDetails{
+    padding-top: 50px;
+    margin-left: 20%;
+    display: inline-flex;
+    img{
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .about{
+        width: 475px;
+    }
+    .participant{
+        margin: 100px;
+    }
+}
+.iconCalendar{
+    margin-right: 30px;
+    margin-top: 6px;
+    max-width: 30%;
+}
+.eventText{
+    max-width: 70%;
+}

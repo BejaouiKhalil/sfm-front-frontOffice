@@ -15,6 +15,7 @@
     "pubsub-js": "^1.7.0",
     "react": "^16.8.6",
     "react-apollo": "^2.5.4",
+    "react-calendar-icon": "^0.9.2",
     "react-dom": "^16.8.6",
     "react-notifications": "^1.4.3",
     "react-rating": "^1.6.2",

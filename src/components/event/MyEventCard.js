@@ -3,6 +3,7 @@ import { Button ,Row } from 'reactstrap';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 import axios from "axios";
+import { withRouter } from 'react-router';
 
 import './styleCard.css'
 
@@ -32,6 +33,8 @@ class MyEventCard extends Component {
                     
                 })
                 NotificationManager.success('Got UnParticipated','Success');
+                window.location.reload();
+
             },
             error => {
               console.log(error);
@@ -59,11 +62,15 @@ class MyEventCard extends Component {
 
         return(
             <div id="eventCard" className="card-event">
+            <div onClick={()=>{
+                this.props.history.push('/eventDetails/'+this.state.event._id)
+            }}>
                 <img className="event-image" src={this.state.event.pathPicture} alt="Avatar" style={{width: '100%'}} />
-                <div className="container">
+                </div>                <div className="container">
                     <h4>{this.state.event.name}</h4> 
-                    <p>{this.state.event.description}</p> 
-                    <p>{this.state.event.nbParticipent}</p> 
+                    <br/>
+                    <p>{this.state.event.lieu}</p>
+                    <p> Number of Participant : {this.state.nbParticipent}</p> 
                     <Row>
                     <div className="buttons-event">
                         <Button className="button-event" onClick={this.createUnParticipateNotification} color="primary" >Unparticipate</Button>
@@ -78,4 +85,4 @@ class MyEventCard extends Component {
     }
 
 }
-export default MyEventCard;
+export default withRouter(MyEventCard);

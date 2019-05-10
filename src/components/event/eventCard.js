@@ -12,7 +12,7 @@ class EventCard extends Component {
     state={
         participated:false,
         interested:false,   
-        idUser:'5c9ccb11830bf44f579bbeae',
+        idUser:'5c9b7f2de0616e7b3ad03cf0',
         handler:false,
         event:this.props.event,
         nbParticipent:0
@@ -129,12 +129,17 @@ class EventCard extends Component {
     render(){
 
         return(
-            <div id="eventCard" className="card-event">
+            <div id="eventCard" className="card-event" >
+            <div onClick={()=>{
+                this.props.history.push('/eventDetails/'+this.state.event._id)
+            }}>
                 <img className="event-image" src={this.state.event.pathPicture} alt="Avatar" style={{width: '100%'}} />
+                </div>
                 <div className="container">
                     <h4>{this.state.event.name}</h4> 
-                    <p>{this.state.event.description}</p> 
-                    <p>{this.state.nbParticipent}</p> 
+                    <br/>
+                    <p>{this.state.event.lieu}</p>
+                    <p> Number of Participant : {this.state.nbParticipent}</p> 
                     <Row>
                     <div className="buttons-event">
                         <Button className="button-event" onClick={this.createInterestedNotification} color="secondary"  disabled={this.state.interested === true}  >{this.state.interested === true ? 'Interested' : 'Interest'}</Button>
@@ -143,11 +148,11 @@ class EventCard extends Component {
                     </Row>
                 </div>
                 <NotificationContainer/>
+
              </div>
-            
 
         );
     }
 
 }
-export default EventCard;
+export default withRouter(EventCard);
