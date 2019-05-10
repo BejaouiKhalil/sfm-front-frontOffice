@@ -43,7 +43,7 @@ const course = ({ course, handleCourseDetails, handleSubscribe }) => {
               className="wishlist-button-container"
               onClick={() => handleSubscribe(course.classe.id)}
             >
-              save
+              <i class="far fa-bookmark" />
             </div>
           </div>
         </div>

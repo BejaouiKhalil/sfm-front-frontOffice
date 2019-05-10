@@ -60,7 +60,7 @@ class Reviews extends Component {
       <>
         <div className="row">
           <div className="col-md-8">
-            <h1>liste des reviews : </h1>
+            <h1>Reviews : </h1>
             <div id="list_review">
               <Query query={GET_ALL_RATES} variables={{ course: id }}>
                 {({ loading, error, data, refetch }) => {
@@ -75,7 +75,7 @@ class Reviews extends Component {
                         alt=""
                       />
                       <div className="col-md-9">
-                        <label>Note: </label>
+                        <label>Rate: </label>
                         <Rating
                           emptySymbol="far fa-star fa-1x"
                           fullSymbol="fas fa-star fa-1x"
@@ -83,7 +83,7 @@ class Reviews extends Component {
                           readonly
                         />
                         <br />
-                        <label>commentaire :</label>
+
                         <p>{rate.comment}</p>
                       </div>
                     </div>
@@ -93,11 +93,11 @@ class Reviews extends Component {
             </div>
           </div>
           <div className="col-md-4" id="moy-review">
-            <h1> Moyenne :</h1>
+            <h1> Rate :</h1>
             <Query query={GET_COURSE_NOTE} variables={{ course: id }}>
               {({ loading, error, data, refetch }) => {
                 if (loading) return <Loading />;
-                if (error) return <p>aucun review</p>;
+                if (error) return <p>no reviews</p>;
                 if (this.state.notif) refetch();
                 return (
                   <Rating
@@ -111,7 +111,7 @@ class Reviews extends Component {
             </Query>
           </div>
         </div>
-        <h1>Nouveaux commentaire :</h1>
+        <h1>New comment :</h1>
         <div onClick={this.closeAlert}>{this.state.notif}</div>
         <div className="row col-md-8" id="new_review">
           <img
@@ -120,7 +120,7 @@ class Reviews extends Component {
             alt=""
           />
           <div className="col-md-9">
-            <label>Note: </label>
+            <label>Rate: </label>
             <Rating
               emptySymbol="far fa-star fa-1x"
               fullSymbol="fas fa-star fa-1x"
@@ -132,13 +132,13 @@ class Reviews extends Component {
               }}
             />
             <br />
-            <label>commentaire :</label>
+            <label>comment :</label>
             <textarea name="comment" onChange={e => this.handleInput(e)} />
             <a
               className="button alt-charcoal-ghost float-right"
               onClick={this.handleSubmit}
             >
-              Envoyer
+              Send
             </a>
           </div>
         </div>

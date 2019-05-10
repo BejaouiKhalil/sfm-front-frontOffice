@@ -64,11 +64,7 @@ class DetailCourse extends Component {
                       <img src={imageUrl} className="img-fluid" alt={name} />
                     </div>
                     <div className="col-md-4" id="content">
-                      <ul>
-                        <li>test</li>
-                        <li>test</li>
-                        <li>test</li>
-                      </ul>
+                      <ul />
                     </div>
                     <div className="col-md-4 offset-md-2" id="followers">
                       <p>
@@ -76,7 +72,7 @@ class DetailCourse extends Component {
                           {classe && classe.subscribers.length}{" "}
                           <i className="fas fa-eye" />{" "}
                         </span>
-                        en train de suivre ce cours
+                        are subscribed to this classe
                       </p>
                     </div>
                   </div>
